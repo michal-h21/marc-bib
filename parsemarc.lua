@@ -25,10 +25,11 @@ function parsemarc.parse(text)
   local records = {}
   local current = nil
   local function insert_fields(tag, fields)
-    local current = current or {}
-    local field = current[tag] or {}
-    table.insert(field, fields)
-    current[tag] = field
+    if current then
+      local field = current[tag] or {}
+      table.insert(field, fields)
+      current[tag] = field
+    end
     return current
   end
   local function insert_record(curr)
