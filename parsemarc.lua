@@ -54,4 +54,9 @@ function parsemarc.parse(text)
   return records
 end
 
+function parsemarc.detect(text)
+  return text:match("245[0-9][0-9][%s]+|")
+end
+
+
 return parsemarc
