@@ -49,7 +49,7 @@ for _, rec in ipairs(records) do
 end
 
 for k, v in pairs(authors) do 
-  -- print(k, v)
+  print(k, v)
 end
 
 for k, v in pairs(formats) do
