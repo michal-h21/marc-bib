@@ -12,6 +12,7 @@ local function get_oneauthor(entry)
   local entry = entry or {}
   local name = entry.a 
   if not name then return nil end
+  name = name:gsub(",%s*$","")
   return {name = name, relation = entry["4"]}
 end
 
