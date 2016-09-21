@@ -29,27 +29,38 @@ end
 local formats = {}
 local authors = {}
 local used    = {}
+-- tabulka s výsledky
+local output  = {}
 for _, rec in ipairs(records) do
   local id = bib_base.get_one(rec, "001")
   if not used[id] then
     local rec_aut = bib_base.get_authors(rec)
     local count = aut_base.filter(rec_aut)
     if count > 0 then
-      print(bib_base.get_one(rec, "245"), count) 
+      -- print(bib_base.get_one(rec, "245"), count) 
       local t = bib_base.get_one(rec, "FMT") or "unknown"
       formats[t] = (formats[t] or 0) + 1
       for _, aut in ipairs(rec_aut) do
         local name = aut.name
         authors[name] = (authors[name] or 0) + 1
       end
+      output[#output + 1] =  bib_base.get_record(rec)
     end
   end
   used[id] = true 
   -- print(get_one(rec, "245", "a"))
 end
 
-for k, v in pairs(authors) do 
-  print(k, v)
+-- tisk seznamu autorů
+-- for k, v in pairs(authors) do 
+--   print(k, v)
+-- end
+--
+for k, v in ipairs(output) do
+  -- if v.format == "RM" then
+    print(bib_base.get_citation(v))
+  -- else
+  -- end
 end
 
 for k, v in pairs(formats) do
