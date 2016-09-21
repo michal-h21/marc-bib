@@ -57,14 +57,13 @@ end
 -- end
 --
 for k, v in ipairs(output) do
-  -- if v.format == "RM" then
+  -- if v.format == "BK" then
     print(bib_base.get_citation(v))
-  -- else
   -- end
 end
 
 for k, v in pairs(formats) do
-  if v > 1 then print(k,v) end
+  -- if v > 1 then print(k,v) end
   -- print(k,v)
 end
 -- for k,v in pairs(records[#records]["FMT"][1]) do print(k,v) end
